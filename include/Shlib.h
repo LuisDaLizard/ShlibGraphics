@@ -80,6 +80,10 @@ extern bool ApplicationInit(AppCreateInfo *pCreateInfo, Application **ppApp);
 extern void ApplicationFree(Application *pApp);
 extern void ApplicationRun(Application *pApp);
 
+extern char *FileReadText(const char *filePath);
+extern void *FileReadBytes(const char *filePath, int *size);
+extern void FileFree(void *contents);
+
 extern void MatrixPrint(Matrix matrix);
 extern void Vec3Print(Vec3 vector);
 extern Matrix MatrixIdentity(void);

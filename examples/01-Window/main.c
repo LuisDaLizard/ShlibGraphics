@@ -24,5 +24,5 @@ int main()
 
 void Update(float delta)
 {
-    printf("%.10f\n", delta);
+
 }

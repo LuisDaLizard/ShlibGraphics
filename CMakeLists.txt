@@ -14,6 +14,7 @@ set(SHLIB_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(SOURCES
         src/ShlibCore.c
         src/ShlibMath.c
+        src/ShlibUtils.c
         )
 set(INCLUDES
         libs/glfw/include

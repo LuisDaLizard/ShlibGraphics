@@ -1,10 +1,14 @@
 #ifndef SHLIBINTERNAL_H
 #define SHLIBINTERNAL_H
 
+#ifdef WIN32
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include <stdbool.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
 
 typedef struct sVec2
 {
@@ -69,6 +73,10 @@ void WindowFree(Window *pWindow);
 bool ApplicationInit(AppCreateInfo *pCreateInfo, Application **ppApp);
 void ApplicationFree(Application *pApp);
 void ApplicationRun(Application *pApp);
+
+char *FileReadText(const char *filePath);
+void *FileReadBytes(const char *filePath, int *size);
+void FileFree(void *contents);
 
 void MatrixPrint(Matrix matrix);
 void Vec3Print(Vec3 vector);
