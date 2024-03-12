@@ -49,23 +49,60 @@ typedef struct sWindow
     void *pHandle;
 } Window;
 
+typedef void (*InitFunc)();
 typedef void (*UpdateFunc)(float);
+typedef void (*DrawFunc)();
+typedef void (*FreeFunc)();
 
 typedef struct sAppCreateInfo
 {
     int width;
     int height;
     const char *pTitle;
+    InitFunc pInitFunction;
     UpdateFunc pUpdateFunction;
+    DrawFunc pDrawFunction;
+    FreeFunc pFreeFunction;
     void *pData;
 } AppCreateInfo;
 
 typedef struct sApplication
 {
     Window *pWindow;
+    InitFunc pInitFunction;
     UpdateFunc pUpdateFunction;
+    DrawFunc pDrawFunction;
+    FreeFunc pFreeFunction;
     void *pData;
 } Application;
+
+typedef struct sProgramCreateInfo
+{
+    const char *pVertexSource;
+    const char *pFragmentSource;
+} ProgramCreateInfo;
+
+typedef struct sProgram
+{
+    unsigned int programID;
+} Program;
+
+typedef struct sMeshCreateInfo
+{
+    bool isStatic;
+    int stride;
+    int numVertices;
+    float *pVertexData;
+    int numAttributes;
+    int *pAttributeComponents;
+} MeshCreateInfo;
+
+typedef struct sMesh
+{
+    unsigned int vao;
+    unsigned int vbo;
+    int numVertices;
+} Mesh;
 
 bool WindowInit(WindowCreateInfo *pCreateInfo, Window **ppWindow);
 void WindowFree(Window *pWindow);
@@ -73,6 +110,24 @@ void WindowFree(Window *pWindow);
 bool ApplicationInit(AppCreateInfo *pCreateInfo, Application **ppApp);
 void ApplicationFree(Application *pApp);
 void ApplicationRun(Application *pApp);
+
+bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program **ppProgram);
+void ProgramDestroy(Program *pProgram);
+void ProgramUse(Program *pProgram);
+int ProgramUniformLocation(Program *pProgram, const char *pName);
+void ProgramUploadBool(Program *pProgram, int location, bool value);
+void ProgramUploadInt(Program *pProgram, int location, int value);
+void ProgramUploadIntArray(Program *pProgram, int location, int *values, int count);
+void ProgramUploadFloat(Program *pProgram, int location, float value);
+void ProgramUploadFloatArray(Program *pProgram, int location, float *values, int count);
+void ProgramUploadVec2(Program *pProgram, int location, Vec2 value);
+void ProgramUploadVec3(Program *pProgram, int location, Vec3 value);
+void ProgramUploadVec4(Program *pProgram, int location, Vec4 value);
+void ProgramUploadMatrix(Program *pProgram, int location, Matrix value);
+
+bool MeshCreate(MeshCreateInfo *pCreateInfo, Mesh **ppMesh);
+void MeshDestroy(Mesh *pMesh);
+void MeshDraw(Mesh *pMesh);
 
 char *FileReadText(const char *filePath);
 void *FileReadBytes(const char *filePath, int *size);
