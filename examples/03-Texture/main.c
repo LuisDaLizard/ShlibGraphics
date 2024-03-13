@@ -33,8 +33,6 @@ Program gShader;
 Mesh gMesh;
 Texture gTexture;
 
-void Draw();
-
 void InitWindow();
 void InitProgram();
 void InitMesh();

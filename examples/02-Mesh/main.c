@@ -28,8 +28,6 @@ Window gWindow;
 Program gShader;
 Mesh gMesh;
 
-void Draw();
-
 void InitWindow();
 void InitProgram();
 void InitMesh();
