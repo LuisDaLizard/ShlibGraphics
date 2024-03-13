@@ -12,11 +12,14 @@ add_subdirectory(libs/glad)
 set(CMAKE_C_STANDARD 90)
 set(SHLIB_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(SOURCES
-        src/ShlibCore.c
-        src/ShlibMath.c
-        src/ShlibUtils.c
-        )
+        src/Matrix.c
+        src/Vector.c
+        src/Utils.c
+        src/Window.c
+        src/Program.c
+        src/Mesh.c)
 set(INCLUDES
+        include
         libs/glfw/include
         libs/glad/include
         )

@@ -1,28 +1,28 @@
-#include <Shlib.h>
+#include <ShlibGraphics.h>
 #include <stdio.h>
-
-void Update(float delta);
 
 int main()
 {
-    Application *pApp = NULL;
-
-    AppCreateInfo createInfo;
+    Window window;
+    WindowCreateInfo createInfo = { 0 };
+    createInfo.glVersionMajor = 3;
+    createInfo.glVersionMinor = 3;
     createInfo.width = 800;
     createInfo.height = 600;
     createInfo.pTitle = "01 - Window";
-    createInfo.pUpdateFunction = Update;
 
-    ApplicationInit(&createInfo, &pApp);
+    if (!WindowInit(&createInfo, &window))
+        return 1;
 
-    ApplicationRun(pApp);
+    WindowSetClearColor(0.5f, 0.1f, 0.1f);
 
-    ApplicationFree(pApp);
+    while(!WindowShouldClose(window))
+    {
+        WindowClear();
+
+        WindowPollEvents(window);
+        WindowSwapBuffers(window);
+    }
 
     return 0;
-}
-
-void Update(float delta)
-{
-
 }

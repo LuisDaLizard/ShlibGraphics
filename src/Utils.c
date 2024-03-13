@@ -1,4 +1,7 @@
-#include "ShlibInternal.h"
+#include "../include/Utils.h"
+
+#include <stdio.h>
+#include <stdlib.h>
 
 char *FileReadText(const char *filePath)
 {

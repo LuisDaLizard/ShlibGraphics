@@ -1,4 +1,4 @@
-#include <Shlib.h>
+#include <ShlibGraphics.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -24,33 +24,50 @@ float mData[] = { 0, 0.5f, 1, 0, 0,
                   -0.5f, -0.5f, 0, 0, 1};
 int mAttribs[] = { 2, 3 };
 
-Program *gShader;
-Mesh *gMesh;
+Window gWindow;
+Program gShader;
+Mesh gMesh;
 
-void Init();
 void Draw();
+
+void InitWindow();
+void InitProgram();
+void InitMesh();
 
 int main()
 {
-    Application *pApp = NULL;
+    InitWindow();
+    InitProgram();
+    InitMesh();
 
-    AppCreateInfo createInfo = { 0 };
-    createInfo.width = 800;
-    createInfo.height = 600;
-    createInfo.pTitle = "02 - Mesh";
-    createInfo.pInitFunction = Init;
-    createInfo.pDrawFunction = Draw;
+    while(!WindowShouldClose(gWindow))
+    {
+        WindowClear();
 
-    ApplicationInit(&createInfo, &pApp);
+        ProgramUse(gShader);
+        MeshDraw(gMesh);
 
-    ApplicationRun(pApp);
-
-    ApplicationFree(pApp);
+        WindowPollEvents(gWindow);
+        WindowSwapBuffers(gWindow);
+    }
 
     return 0;
 }
 
-void Init()
+void InitWindow()
+{
+    WindowCreateInfo createInfo = { 0 };
+    createInfo.glVersionMajor = 3;
+    createInfo.glVersionMinor = 3;
+    createInfo.width = 800;
+    createInfo.height = 600;
+    createInfo.pTitle = "02 - Mesh";
+
+    WindowInit(&createInfo, &gWindow);
+    WindowSetClearColor(1, 1, 1);
+}
+
+void InitProgram()
 {
     ProgramCreateInfo program = { 0 };
     program.pVertexSource = vSource;
@@ -58,7 +75,10 @@ void Init()
 
     if (!ProgramCreate(&program, &gShader))
         exit(1);
+}
 
+void InitMesh()
+{
     MeshCreateInfo mesh = { 0 };
     mesh.stride = sizeof(Vec2) + sizeof(Vec3);
     mesh.numVertices = 3;
@@ -68,10 +88,4 @@ void Init()
 
     if (!MeshCreate(&mesh, &gMesh))
         exit(1);
-}
-
-void Draw()
-{
-    ProgramUse(gShader);
-    MeshDraw(gMesh);
 }
