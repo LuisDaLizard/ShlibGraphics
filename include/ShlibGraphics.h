@@ -7,5 +7,6 @@
 #include "Window.h"
 #include "Program.h"
 #include "Mesh.h"
+#include "Texture.h"
 
 #endif //SHLIB_GRAPHICS_H

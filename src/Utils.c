@@ -1,7 +1,37 @@
-#include "../include/Utils.h"
+#include "Utils.h"
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <glad/glad.h>
+
+FILE *pInfoOutput = NULL;
+FILE *pWarningOutput = NULL;
+FILE *pErrorOutput = NULL;
+
+void WriteInfo(const char *message)
+{
+    if (!pInfoOutput)
+        pInfoOutput = stdin;
+
+    fprintf(pInfoOutput, "%s\n", message);
+}
+
+void WriteWarning(const char *message)
+{
+    if (!pWarningOutput)
+        pWarningOutput = stdin;
+
+    fprintf(pWarningOutput, "WARNING: %s\n", message);
+}
+
+void WriteError(int code, const char *message)
+{
+    if (!pErrorOutput)
+        pErrorOutput = stderr;
+
+    fprintf(pErrorOutput, "ERROR (%04x): %s\n", code, message);
+    exit(code);
+}
 
 char *FileReadText(const char *filePath)
 {
@@ -47,4 +77,18 @@ void *FileReadBytes(const char *filePath, int *size)
 void FileFree(void *contents)
 {
     free(contents);
+}
+
+bool CheckGLErrors()
+{
+    bool result = false;
+    GLenum error;
+    while((error = glGetError()) != GL_NO_ERROR)
+    {
+        result = true;
+
+        WriteError((int)error, "OpenGL Error!");
+    }
+
+    return result;
 }

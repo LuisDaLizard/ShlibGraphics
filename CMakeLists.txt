@@ -17,7 +17,7 @@ set(SOURCES
         src/Utils.c
         src/Window.c
         src/Program.c
-        src/Mesh.c)
+        src/Mesh.c src/Texture.c)
 set(INCLUDES
         include
         libs/glfw/include
