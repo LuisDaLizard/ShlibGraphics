@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(03-Texture C)
+project(04-Framebuffer C)
 
 add_executable(${PROJECT_NAME} main.c)
 target_link_libraries(${PROJECT_NAME} ShlibGraphics)

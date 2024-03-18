@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Shlib C)
+project(ShlibGraphics C)
 
 # CMAKE OPTIONS #
 option(BUILD_EXAMPLES "Build all example projects" ON)
@@ -10,25 +10,28 @@ add_subdirectory(libs/glad)
 
 # PROJECT SETTINGS #
 set(CMAKE_C_STANDARD 90)
+
 set(SHLIB_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 set(SOURCES
         src/Matrix.c
         src/Vector.c
         src/Utils.c
         src/Window.c
         src/Program.c
-        src/Mesh.c src/Texture.c)
+        src/Mesh.c
+        src/Texture.c src/Framebuffer.c)
+
 set(INCLUDES
         include
         libs/glfw/include
-        libs/glad/include
-        )
+        libs/glad/include )
+
 set(LIBS
         glfw
-        glad
-        )
-set(DEFINITIONS
-        )
+        glad )
+
+set(DEFINITIONS )
 
 # PLATFORM SPECIFIC SETTINGS #
 if(APPLE)
