@@ -1,15 +1,17 @@
 #ifndef SHLIB_FRAMEBUFFER_H
 #define SHLIB_FRAMEBUFFER_H
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 #include "Texture.h"
 
-typedef struct sColorAttachmentCreateInfo
-{
+typedef struct sColorAttachmentCreateInfo {
     bool useDrawBuffer;
 } ColorAttachmentCreateInfo;
 
-struct sFramebufferCreateInfo
-{
+struct sFramebufferCreateInfo {
     int width;
     int height;
 
@@ -19,8 +21,7 @@ struct sFramebufferCreateInfo
     ColorAttachmentCreateInfo *pAttachments; // TODO: no purpose yet.
 };
 
-struct sFramebuffer
-{
+struct sFramebuffer {
     int width;
     int height;
 
@@ -35,11 +36,17 @@ typedef struct sFramebufferCreateInfo FramebufferCreateInfo;
 typedef struct sFramebuffer *Framebuffer;
 
 bool FramebufferCreate(FramebufferCreateInfo *pCreateInfo, Framebuffer *pFramebuffer);
+
 void FramebufferDestroy(Framebuffer framebuffer);
 
 void FramebufferBegin(Framebuffer framebuffer);
+
 void FramebufferEnd(Framebuffer framebuffer, int width, int height);
 
 Texture FramebufferGetAttachment(Framebuffer framebuffer, int index);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //SHLIB_FRAMEBUFFER_H

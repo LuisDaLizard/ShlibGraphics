@@ -1,18 +1,20 @@
 #ifndef SHLIB_TEXTURE_H
 #define SHLIB_TEXTURE_H
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 #include <stdbool.h>
 
-typedef enum eTextureWrap
-{
+typedef enum eTextureWrap {
     WRAP_CLAMP_TO_EDGE = 0x812f,
     WRAP_CLAMP_TO_BORDER = 0x812d,
     WRAP_MIRRORED_REPEAT = 0x8370,
     WRAP_REPEAT = 0x2901,
 } TextureWrap;
 
-typedef enum eTextureMin
-{
+typedef enum eTextureMin {
     MIN_NEAREST = 0x2600,
     MIN_LINEAR = 0x2601,
     MIN_NEAREST_MIPMAP_NEAREST = 0x2700,
@@ -21,22 +23,19 @@ typedef enum eTextureMin
     MIN_LINEAR_MIPMAP_LINEAR = 0x2703,
 } TextureMin;
 
-typedef enum eTextureMag
-{
+typedef enum eTextureMag {
     MAG_NEAREST = 0x2600,
     MAG_LINEAR = 0x2601,
 } TextureMag;
 
-typedef struct sTextureParams
-{
+typedef struct sTextureParams {
     TextureWrap wrapS;
     TextureWrap wrapT;
     TextureMin minFilter;
     TextureMag magFilter;
 } TextureParams;
 
-struct sTexture2DCreateInfo
-{
+struct sTexture2DCreateInfo {
     int width;
     int height;
     int channels;
@@ -46,8 +45,7 @@ struct sTexture2DCreateInfo
     TextureParams params;
 };
 
-struct sTextureCubeCreateInfo
-{
+struct sTextureCubeCreateInfo {
     int width;
     int height;
     int channels;
@@ -62,8 +60,7 @@ struct sTextureCubeCreateInfo
     TextureParams params;
 };
 
-struct sTextureDepthCreateInfo
-{
+struct sTextureDepthCreateInfo {
     int width;
     int height;
 
@@ -72,8 +69,7 @@ struct sTextureDepthCreateInfo
     TextureParams params;
 };
 
-struct sTexture
-{
+struct sTexture {
     unsigned int textureID;
     unsigned int textureType;
 };
@@ -84,9 +80,17 @@ typedef struct sTextureDepthCreateInfo TextureDepthCreateInfo;
 typedef struct sTexture *Texture;
 
 bool Texture2DCreate(Texture2DCreateInfo *pCreateInfo, Texture *pTexture);
+
 bool TextureCubeCreate(TextureCubeCreateInfo *pCreateInfo, Texture *pTexture);
+
 bool TextureDepthCreate(TextureDepthCreateInfo *pCreateInfo, Texture *pTexture);
+
 void TextureDestroy(Texture texture);
+
 void TextureBind(Texture texture, int slot);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //SHLIB_TEXTURE_H
