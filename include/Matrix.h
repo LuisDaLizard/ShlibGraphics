@@ -42,6 +42,12 @@ Matrix MatrixUScale(Matrix matrix, float scale);
 
 Matrix MatrixTranslate(Matrix matrix, Vec3 translation);
 
+Matrix MatrixOrtho(float left, float right, float top, float bottom, float near, float far);
+
+Matrix MatrixPerspective(float aspect, float fov, float near, float far);
+
+Matrix MatrixLookAt(Vec3 eye, Vec3 target, Vec3 up);
+
 #ifdef __cplusplus
 }
 #endif

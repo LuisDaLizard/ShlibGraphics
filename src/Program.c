@@ -1,4 +1,5 @@
 #include "Program.h"
+#include "Utils.h"
 
 #include <glad/glad.h>
 #include <stdlib.h>
@@ -19,8 +20,8 @@ bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram) {
     glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
     if (!success)
     {
-        glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-        //TODO: Log Error
+        glGetShaderInfoLog(vertex, 511, NULL, infoLog);
+        WriteInfo(infoLog);
     }
 
     fragment = glCreateShader(GL_FRAGMENT_SHADER);
@@ -30,8 +31,8 @@ bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram) {
     glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
     if (!success)
     {
-        glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-        //TODO: Log Error
+        glGetShaderInfoLog(fragment, 511, NULL, infoLog);
+        WriteInfo(infoLog);
     }
 
     id = glCreateProgram();
@@ -45,8 +46,8 @@ bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram) {
     glGetProgramiv(id, GL_LINK_STATUS, &success);
     if (!success)
     {
-        glGetProgramInfoLog(id, 512, NULL, infoLog);
-        //TODO: Log Error
+        glGetProgramInfoLog(id, 511, NULL, infoLog);
+        WriteWarning(infoLog);
         return false;
     }
 

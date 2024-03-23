@@ -1,5 +1,5 @@
-#include "../include/Matrix.h"
-
+#include "Matrix.h"
+#include "Utils.h"
 #include <stdio.h>
 
 void MatrixPrint(Matrix matrix)
@@ -118,4 +118,65 @@ Matrix MatrixUScale(Matrix matrix, float scale)
 Matrix MatrixTranslate(Matrix matrix, Vec3 translation)
 {
     return MatrixMul(matrix, MatrixCreateTranslation(translation));
+}
+
+Matrix MatrixOrtho(float left, float right, float top, float bottom, float near, float far)
+{
+    Matrix result = MatrixIdentity();
+
+    result.m00 = 2 / (right - left);
+    result.m11 = 2 / (top - bottom);
+    result.m22 = -2 / (far - near);
+
+    result.m03 = -((right + left) / (right - left));
+    result.m13 = -((top + bottom) / (top - bottom));
+    result.m23 = -((far + near) / (far - near));
+
+    return result;
+}
+
+Matrix MatrixPerspective(float aspect, float fov, float near, float far)
+{
+    Matrix result = MatrixIdentity();
+
+    float tan_fov = tanf((fov * DEG2RADF) / 2.0f);
+
+    result.m00 = 1 / (aspect * tan_fov);
+    result.m11 = 1 / tan_fov;
+    result.m22 = -(far + near) / (far - near);
+    result.m33 = 0;
+    result.m23 = -(2 * far * near) / (far - near);
+    result.m32 = -1;
+
+    return result;
+}
+
+Matrix MatrixLookAt(Vec3 eye, Vec3 target, Vec3 up) {
+    Matrix result = MatrixIdentity();
+
+    Vec3 zaxis = Vec3Normalize(Vec3Sub(target, eye));
+    Vec3 xaxis = Vec3Normalize(Vec3Cross(zaxis, up));
+    Vec3 yaxis = Vec3Cross(xaxis, zaxis);
+
+    zaxis = Vec3Negate(zaxis);
+
+    result.m00 = xaxis.x;
+    result.m01 = xaxis.y;
+    result.m02 = xaxis.z;
+    result.m03 = -Vec3Dot(xaxis, eye);
+
+    result.m10 = yaxis.x;
+    result.m11 = yaxis.y;
+    result.m12 = yaxis.z;
+    result.m13 = -Vec3Dot(yaxis, eye);
+
+    result.m20 = zaxis.x;
+    result.m21 = zaxis.y;
+    result.m22 = zaxis.z;
+    result.m23 = -Vec3Dot(zaxis, eye);
+
+    result.m33 = 1;
+
+
+    return result;
 }
