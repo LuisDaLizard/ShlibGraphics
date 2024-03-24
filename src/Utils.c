@@ -11,7 +11,7 @@ FILE *pErrorOutput = NULL;
 void WriteInfo(const char *message)
 {
     if (!pInfoOutput)
-        pInfoOutput = stdin;
+        pInfoOutput = stdout;
 
     fprintf(pInfoOutput, "%s\n", message);
 }
@@ -19,7 +19,7 @@ void WriteInfo(const char *message)
 void WriteWarning(const char *message)
 {
     if (!pWarningOutput)
-        pWarningOutput = stdin;
+        pWarningOutput = stdout;
 
     fprintf(pWarningOutput, "WARNING: %s\n", message);
 }
