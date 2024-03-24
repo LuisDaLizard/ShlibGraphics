@@ -40,6 +40,10 @@ typedef enum eKeyCode
     KEY_X,
     KEY_Y,
     KEY_Z,
+    KEY_RIGHT = 262,
+    KEY_LEFT,
+    KEY_DOWN,
+    KEY_UP,
 } KeyCode;
 
 typedef enum eMouseButton
