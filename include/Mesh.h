@@ -7,19 +7,26 @@ extern "C"{
 
 #include <stdbool.h>
 
+typedef enum eMeshTopology
+{
+    TOPOLOGY_TRIANGLES = 0x0004,
+    TOPOLOGY_PATCHES = 0x000E,
+} MeshTopology;
+
 struct sMeshCreateInfo {
-    bool isStatic;
     int stride;
     int numVertices;
     float *pVertexData;
     int numAttributes;
     int *pAttributeComponents;
+    MeshTopology topology;
 };
 
 struct sMesh {
     unsigned int vao;
     unsigned int vbo;
     int numVertices;
+    MeshTopology topology;
 };
 
 typedef struct sMeshCreateInfo MeshCreateInfo;
