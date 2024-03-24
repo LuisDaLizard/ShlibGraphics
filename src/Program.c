@@ -8,8 +8,11 @@ bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram) {
     if (!pCreateInfo->pVertexSource || !pCreateInfo->pFragmentSource)
         return false;
 
+    bool useGeom = (pCreateInfo->pGeometrySource != NULL);
+    bool useTess = (pCreateInfo->pTessControlSource && pCreateInfo->pTessEvaluationSource);
+
     unsigned int id;
-    unsigned int vertex, fragment, geometry;
+    unsigned int vertex, fragment, geometry, tessControl, tessEvaluation;
     int success;
     char infoLog[512];
 
@@ -35,7 +38,7 @@ bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram) {
         WriteInfo(infoLog);
     }
 
-    if (pCreateInfo->pGeometrySource)
+    if (useGeom)
     {
         geometry = glCreateShader(GL_GEOMETRY_SHADER);
         glShaderSource(geometry, 1, &pCreateInfo->pGeometrySource, NULL);
@@ -49,15 +52,52 @@ bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram) {
         }
     }
 
+    if (useTess)
+    {
+        tessControl = glCreateShader(GL_TESS_CONTROL_SHADER);
+        glShaderSource(tessControl, 1, &pCreateInfo->pTessControlSource, NULL);
+        glCompileShader(tessControl);
+
+        glGetShaderiv(tessControl, GL_COMPILE_STATUS, &success);
+        if (!success)
+        {
+            glGetShaderInfoLog(tessControl, 511, NULL, infoLog);
+            WriteInfo(infoLog);
+        }
+
+        tessEvaluation = glCreateShader(GL_TESS_EVALUATION_SHADER);
+        glShaderSource(tessEvaluation, 1, &pCreateInfo->pTessEvaluationSource, NULL);
+        glCompileShader(tessEvaluation);
+
+        glGetShaderiv(tessEvaluation, GL_COMPILE_STATUS, &success);
+        if (!success)
+        {
+            glGetShaderInfoLog(tessEvaluation, 511, NULL, infoLog);
+            WriteInfo(infoLog);
+        }
+    }
+
     id = glCreateProgram();
     glAttachShader(id, vertex);
     glAttachShader(id, fragment);
-    if (pCreateInfo->pGeometrySource)
+    if (useGeom)
         glAttachShader(id, geometry);
+    if (useTess)
+    {
+        glAttachShader(id, tessControl);
+        glAttachShader(id, tessEvaluation);
+    }
     glLinkProgram(id);
 
     glDeleteShader(vertex);
     glDeleteShader(fragment);
+    if (useGeom)
+        glDeleteShader(geometry);
+    if (useTess)
+    {
+        glDeleteShader(tessControl);
+        glDeleteShader(tessEvaluation);
+    }
 
     glGetProgramiv(id, GL_LINK_STATUS, &success);
     if (!success)

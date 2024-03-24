@@ -14,6 +14,8 @@ struct sProgramCreateInfo {
     const char *pVertexSource;
     const char *pFragmentSource;
     const char *pGeometrySource;
+    const char *pTessControlSource;
+    const char *pTessEvaluationSource;
 };
 
 struct sProgram {
