@@ -13,6 +13,7 @@ extern "C"{
 struct sProgramCreateInfo {
     const char *pVertexSource;
     const char *pFragmentSource;
+    const char *pGeometrySource;
 };
 
 struct sProgram {

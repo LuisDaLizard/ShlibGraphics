@@ -9,7 +9,7 @@ bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram) {
         return false;
 
     unsigned int id;
-    unsigned int vertex, fragment;
+    unsigned int vertex, fragment, geometry;
     int success;
     char infoLog[512];
 
@@ -35,9 +35,25 @@ bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram) {
         WriteInfo(infoLog);
     }
 
+    if (pCreateInfo->pGeometrySource)
+    {
+        geometry = glCreateShader(GL_GEOMETRY_SHADER);
+        glShaderSource(geometry, 1, &pCreateInfo->pGeometrySource, NULL);
+        glCompileShader(geometry);
+
+        glGetShaderiv(geometry, GL_COMPILE_STATUS, &success);
+        if (!success)
+        {
+            glGetShaderInfoLog(geometry, 511, NULL, infoLog);
+            WriteInfo(infoLog);
+        }
+    }
+
     id = glCreateProgram();
     glAttachShader(id, vertex);
     glAttachShader(id, fragment);
+    if (pCreateInfo->pGeometrySource)
+        glAttachShader(id, geometry);
     glLinkProgram(id);
 
     glDeleteShader(vertex);
