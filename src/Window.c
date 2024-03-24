@@ -96,7 +96,7 @@ bool WindowIsKeyDown(Window window, KeyCode key)
 
 bool WindowIsMouseButtonDown(Window window, MouseButton button)
 {
-    return glfwGetMouseButton(window->pHandle, GLFW_MOUSE_BUTTON_MIDDLE);
+    return glfwGetMouseButton(window->pHandle, button);
 }
 
 void WindowGetMousePos(Window window, float *x, float *y)
@@ -117,4 +117,6 @@ void WindowResizeCallback(GLFWwindow *handle, int width, int height)
 
     window->width = width;
     window->height = height;
+
+    glViewport(0, 0, width, height);
 }

@@ -7,6 +7,7 @@ extern "C"{
 
 #ifdef WIN32
 #define _CRT_SECURE_NO_WARNINGS
+#define _USE_MATH_DEFINES
 #endif
 
 #include <math.h>
@@ -14,6 +15,9 @@ extern "C"{
 
 #define DEG2RADF (float)(M_PI / 180.0f)
 #define RAD2DEGF (float)(180.0f / M_PI)
+#define MAX(a, b) ((a > b) ? a : b)
+#define MIN(a, b) ((a < b) ? a : b)
+#define CLAMP(min, a, max) (MAX(min, MIN(max, a)))
 
 void WriteInfo(const char *message);
 
