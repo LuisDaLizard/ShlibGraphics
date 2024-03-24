@@ -8,6 +8,8 @@
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
 
+void WindowResizeCallback(GLFWwindow *handle, int width, int height);
+
 bool WindowInit(WindowCreateInfo *pCreateInfo, Window *pWindow)
 {
     if (!glfwInit())
@@ -31,6 +33,8 @@ bool WindowInit(WindowCreateInfo *pCreateInfo, Window *pWindow)
 
     glfwMakeContextCurrent(window->pHandle);
     glfwSwapInterval(0);
+    glfwSetWindowUserPointer(window->pHandle, window);
+    glfwSetFramebufferSizeCallback(window->pHandle, WindowResizeCallback);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
         return 0;
@@ -83,4 +87,34 @@ void WindowClear()
 void WindowClearDepth()
 {
     glClear(GL_DEPTH_BUFFER_BIT);
+}
+
+bool WindowIsKeyDown(Window window, KeyCode key)
+{
+    return glfwGetKey(window->pHandle, key);
+}
+
+bool WindowIsMouseButtonDown(Window window, MouseButton button)
+{
+    return glfwGetMouseButton(window->pHandle, GLFW_MOUSE_BUTTON_MIDDLE);
+}
+
+void WindowGetMousePos(Window window, float *x, float *y)
+{
+    double xPos, yPos;
+    glfwGetCursorPos(window->pHandle, &xPos, &yPos);
+
+    *x = (float)xPos;
+    *y = (float)yPos;
+}
+
+
+void WindowResizeCallback(GLFWwindow *handle, int width, int height)
+{
+    Window window = (Window) glfwGetWindowUserPointer(handle);
+    if (!window)
+        return;
+
+    window->width = width;
+    window->height = height;
 }

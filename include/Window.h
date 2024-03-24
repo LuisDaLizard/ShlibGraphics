@@ -11,6 +11,44 @@ extern "C"{
 
 #include <stdbool.h>
 
+typedef enum eKeyCode
+{
+    KEY_SPACE = 32,
+    KEY_A = 65,
+    KEY_B,
+    KEY_C,
+    KEY_D,
+    KEY_E,
+    KEY_F,
+    KEY_G,
+    KEY_H,
+    KEY_I,
+    KEY_J,
+    KEY_K,
+    KEY_L,
+    KEY_M,
+    KEY_N,
+    KEY_O,
+    KEY_P,
+    KEY_Q,
+    KEY_R,
+    KEY_S,
+    KEY_T,
+    KEY_U,
+    KEY_V,
+    KEY_W,
+    KEY_X,
+    KEY_Y,
+    KEY_Z,
+} KeyCode;
+
+typedef enum eMouseButton
+{
+    MOUSE_LEFT = 0,
+    MOUSE_RIGHT,
+    MOUSE_MIDDLE,
+} MouseButton;
+
 struct sWindowCreateInfo {
     char glVersionMajor;
     char glVersionMinor;
@@ -47,6 +85,12 @@ void WindowSetClearColor(float r, float g, float b);
 void WindowClear();
 
 void WindowClearDepth();
+
+bool WindowIsKeyDown(Window window, KeyCode key);
+
+bool WindowIsMouseButtonDown(Window window, MouseButton button);
+
+void WindowGetMousePos(Window window, float *x, float *y);
 
 #ifdef __cplusplus
 }
