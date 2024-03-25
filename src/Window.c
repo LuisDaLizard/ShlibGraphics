@@ -39,6 +39,8 @@ bool WindowInit(WindowCreateInfo *pCreateInfo, Window *pWindow)
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
         return 0;
 
+    glEnable(GL_DEPTH_TEST);
+
     *pWindow = window;
     return 1;
 }
