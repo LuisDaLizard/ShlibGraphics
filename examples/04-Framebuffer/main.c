@@ -70,9 +70,7 @@ int main()
 
     while(!WindowShouldClose(gWindow))
     {
-        WindowClear();
-
-
+        GLClear();
 
         ProgramUse(gShader);
         MeshDraw(gTriMesh);
@@ -94,7 +92,7 @@ void InitWindow()
     createInfo.pTitle = "04 - Framebuffer";
 
     WindowInit(&createInfo, &gWindow);
-    WindowSetClearColor(0, 0, 0);
+    GLClearColor(0, 0, 0, 1);
 }
 
 void InitProgram()
@@ -115,6 +113,7 @@ void InitMesh()
     triangle.pVertexData = (float *)mTriangleData;
     triangle.numAttributes = 2;
     triangle.pAttributeComponents = mTriangleAttribs;
+    triangle.topology = TOPOLOGY_TRIANGLES;
 
     if (!MeshCreate(&triangle, &gTriMesh))
         exit(2);
@@ -125,6 +124,7 @@ void InitMesh()
     quad.pVertexData = (float *)mQuadData;
     quad.numAttributes = 2;
     quad.pAttributeComponents = mQuadAttribs;
+    quad.topology = TOPOLOGY_TRIANGLES;
 
     if (!MeshCreate(&quad, &gQuadMesh))
         exit(2);

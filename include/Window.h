@@ -1,7 +1,3 @@
-//
-// Created by Luis on 3/11/2024.
-//
-
 #ifndef SHLIB_WINDOW_H
 #define SHLIB_WINDOW_H
 
@@ -83,12 +79,6 @@ void WindowSwapBuffers(Window window);
 void WindowSetVSync(Window window, bool vsync);
 
 void WindowSetFullscreen(Window window, bool fullscreen);
-
-void WindowSetClearColor(float r, float g, float b);
-
-void WindowClear();
-
-void WindowClearDepth();
 
 bool WindowIsKeyDown(Window window, KeyCode key);
 

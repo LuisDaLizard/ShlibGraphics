@@ -47,7 +47,7 @@ int main()
 
     while(!WindowShouldClose(gWindow))
     {
-        WindowClear();
+        GLClear();
 
         ProgramUse(gShader);
         TextureBind(gTexture, 0);
@@ -70,7 +70,7 @@ void InitWindow()
     createInfo.pTitle = "03 - Texture";
 
     WindowInit(&createInfo, &gWindow);
-    WindowSetClearColor(1, 1, 1);
+    GLClearColor(1, 1, 1, 1);
 }
 
 void InitProgram()
@@ -91,6 +91,7 @@ void InitMesh()
     mesh.pVertexData = mData;
     mesh.numAttributes = 2;
     mesh.pAttributeComponents = mAttribs;
+    mesh.topology = TOPOLOGY_TRIANGLES;
 
     if (!MeshCreate(&mesh, &gMesh))
         exit(2);

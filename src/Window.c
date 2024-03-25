@@ -74,21 +74,6 @@ void WindowSetFullscreen(Window window, bool fullscreen)
     glfwGetWindowMonitor(window->pHandle);
 }
 
-void WindowSetClearColor(float r, float g, float b)
-{
-    glClearColor(r, g, b, 1);
-}
-
-void WindowClear()
-{
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-
-void WindowClearDepth()
-{
-    glClear(GL_DEPTH_BUFFER_BIT);
-}
-
 bool WindowIsKeyDown(Window window, KeyCode key)
 {
     return glfwGetKey(window->pHandle, key);

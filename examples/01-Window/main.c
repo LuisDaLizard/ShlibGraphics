@@ -14,11 +14,11 @@ int main()
     if (!WindowInit(&createInfo, &window))
         return 1;
 
-    WindowSetClearColor(0.5f, 0.1f, 0.1f);
+    GLClearColor(1, 1, 1, 1);
 
     while(!WindowShouldClose(window))
     {
-        WindowClear();
+        GLClear();
 
         WindowPollEvents(window);
         WindowSwapBuffers(window);

@@ -20,7 +20,9 @@ set(SOURCES
         src/Window.c
         src/Program.c
         src/Mesh.c
-        src/Texture.c src/Framebuffer.c)
+        src/Texture.c
+        src/Framebuffer.c
+        src/Graphics.c)
 
 set(INCLUDES
         include

@@ -1,6 +1,7 @@
-#ifndef SHLIB_GRAPHICS_H
-#define SHLIB_GRAPHICS_H
+#ifndef SHLIBGRAPHICS_H
+#define SHLIBGRAPHICS_H
 
+#include "Graphics.h"
 #include "Matrix.h"
 #include "Vector.h"
 #include "Utils.h"
@@ -10,4 +11,4 @@
 #include "Texture.h"
 #include "Framebuffer.h"
 
-#endif //SHLIB_GRAPHICS_H
+#endif //SHLIBGRAPHICS_H
