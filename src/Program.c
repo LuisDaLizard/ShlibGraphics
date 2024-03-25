@@ -4,7 +4,8 @@
 #include <glad/glad.h>
 #include <stdlib.h>
 
-bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram) {
+bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram)
+{
     if (!pCreateInfo->pVertexSource || !pCreateInfo->pFragmentSource)
         return false;
 
@@ -98,6 +99,49 @@ bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram) {
         glDeleteShader(tessControl);
         glDeleteShader(tessEvaluation);
     }
+
+    glGetProgramiv(id, GL_LINK_STATUS, &success);
+    if (!success)
+    {
+        glGetProgramInfoLog(id, 511, NULL, infoLog);
+        WriteWarning(infoLog);
+        return false;
+    }
+
+    Program program = malloc(sizeof(struct sProgram));
+
+    program->programID = id;
+
+    *pProgram = program;
+    return true;
+}
+
+bool ProgramCreateCompute(ProgramComputeCreateInfo *pCreateInfo, Program *pProgram)
+{
+    if (!pCreateInfo->pComputeSource)
+        return false;
+
+    unsigned int id;
+    unsigned int compute;
+    int success;
+    char infoLog[512];
+
+    compute = glCreateShader(GL_COMPUTE_SHADER);
+    glShaderSource(compute, 1, &pCreateInfo->pComputeSource, NULL);
+    glCompileShader(compute);
+
+    glGetShaderiv(compute, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(compute, 511, NULL, infoLog);
+        WriteInfo(infoLog);
+    }
+
+    id = glCreateProgram();
+    glAttachShader(id, compute);
+    glLinkProgram(id);
+
+    glDeleteShader(compute);
 
     glGetProgramiv(id, GL_LINK_STATUS, &success);
     if (!success)

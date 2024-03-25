@@ -18,14 +18,22 @@ struct sProgramCreateInfo {
     const char *pTessEvaluationSource;
 };
 
+struct sProgramComputeCreateInfo
+{
+    const char *pComputeSource;
+};
+
 struct sProgram {
     unsigned int programID;
 };
 
 typedef struct sProgramCreateInfo ProgramCreateInfo;
+typedef struct sProgramComputeCreateInfo ProgramComputeCreateInfo;
 typedef struct sProgram *Program;
 
 bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram);
+
+bool ProgramCreateCompute(ProgramComputeCreateInfo *pCreateInfo, Program *pProgram);
 
 void ProgramDestroy(Program program);
 
