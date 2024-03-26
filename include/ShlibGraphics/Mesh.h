@@ -9,6 +9,7 @@ extern "C"{
 
 typedef enum eMeshTopology
 {
+    TOPOLOGY_POINTS = 0x0000,
     TOPOLOGY_TRIANGLES = 0x0004,
     TOPOLOGY_PATCHES = 0x000E,
 } MeshTopology;
