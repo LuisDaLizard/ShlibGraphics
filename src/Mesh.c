@@ -11,9 +11,6 @@ bool MeshCreate(MeshCreateInfo *pCreateInfo, Mesh *pMesh)
     if (pCreateInfo->stride <= 0 || pCreateInfo->numAttributes <= 0)
         return false;
 
-    if (!pCreateInfo->topology)
-        return false;
-
     int i;
     int totalSize = 0;
     for (i = 0; i < pCreateInfo->numAttributes; i++)
