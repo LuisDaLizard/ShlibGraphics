@@ -39,6 +39,8 @@ void ProgramDestroy(Program program);
 
 void ProgramUse(Program program);
 
+void ProgramDispatch(Program program, int x, int y, int z);
+
 int ProgramUniformLocation(Program program, const char *pName);
 
 void ProgramUploadBool(Program program, int location, bool value);

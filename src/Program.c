@@ -109,7 +109,6 @@ bool ProgramCreate(ProgramCreateInfo *pCreateInfo, Program *pProgram)
     }
 
     Program program = malloc(sizeof(struct sProgram));
-
     program->programID = id;
 
     *pProgram = program;
@@ -152,7 +151,6 @@ bool ProgramCreateCompute(ProgramComputeCreateInfo *pCreateInfo, Program *pProgr
     }
 
     Program program = malloc(sizeof(struct sProgram));
-
     program->programID = id;
 
     *pProgram = program;
@@ -168,6 +166,15 @@ void ProgramDestroy(Program program)
 void ProgramUse(Program program)
 {
     glUseProgram(program->programID);
+}
+
+void ProgramDispatch(Program program, int x, int y, int z)
+{
+    glUseProgram(program->programID);
+
+    glDispatchCompute(x, y, z);
+
+    glMemoryBarrier(GL_ALL_BARRIER_BITS);
 }
 
 int ProgramUniformLocation(Program program, const char *pName)
