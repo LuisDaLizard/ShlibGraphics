@@ -1,4 +1,4 @@
-#include "Graphics.h"
+#include "ShlibGraphics/Graphics.h"
 #include <glad/glad.h>
 
 void GLClearColor(float r, float g, float b, float a)

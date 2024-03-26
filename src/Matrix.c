@@ -1,5 +1,5 @@
-#include "Matrix.h"
-#include "Utils.h"
+#include "ShlibGraphics/Matrix.h"
+#include "ShlibGraphics/Utils.h"
 #include <stdio.h>
 
 void MatrixPrint(Matrix matrix)

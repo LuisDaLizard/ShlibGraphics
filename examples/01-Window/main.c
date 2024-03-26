@@ -1,4 +1,4 @@
-#include <ShlibGraphics.h>
+#include "ShlibGraphics/ShlibGraphics.h"
 #include <stdio.h>
 
 int main()

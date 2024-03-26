@@ -1,4 +1,4 @@
-#include <ShlibGraphics.h>
+#include "ShlibGraphics/ShlibGraphics.h"
 #include <stdlib.h>
 
 const char *vSource = "#version 330 core\n"

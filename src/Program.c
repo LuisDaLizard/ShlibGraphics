@@ -1,5 +1,5 @@
-#include "Program.h"
-#include "Utils.h"
+#include "ShlibGraphics/Program.h"
+#include "ShlibGraphics/Utils.h"
 
 #include <glad/glad.h>
 #include <stdlib.h>

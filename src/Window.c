@@ -2,7 +2,7 @@
 // Created by Luis on 3/11/2024.
 //
 
-#include "Window.h"
+#include "ShlibGraphics/Window.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

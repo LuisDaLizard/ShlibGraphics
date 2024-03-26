@@ -1,4 +1,4 @@
-#include "Texture.h"
+#include "ShlibGraphics/Texture.h"
 
 #include <stdlib.h>
 #include <glad/glad.h>

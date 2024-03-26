@@ -1,5 +1,5 @@
-#include "Framebuffer.h"
-#include "Utils.h"
+#include "ShlibGraphics/Framebuffer.h"
+#include "ShlibGraphics/Utils.h"
 
 #include <stdlib.h>
 #include <glad/glad.h>

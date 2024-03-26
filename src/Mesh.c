@@ -1,4 +1,4 @@
-#include "Mesh.h"
+#include "ShlibGraphics/Mesh.h"
 
 #include <glad/glad.h>
 #include <stdlib.h>
