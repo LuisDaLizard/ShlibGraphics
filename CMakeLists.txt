@@ -22,7 +22,8 @@ set(SOURCES
         src/Mesh.c
         src/Texture.c
         src/Framebuffer.c
-        src/Graphics.c)
+        src/Graphics.c
+        src/ShaderStorage.c)
 
 set(INCLUDES
         include

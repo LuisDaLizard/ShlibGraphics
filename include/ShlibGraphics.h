@@ -10,5 +10,6 @@
 #include "Mesh.h"
 #include "Texture.h"
 #include "Framebuffer.h"
+#include "ShaderStorage.h"
 
 #endif //SHLIBGRAPHICS_H
