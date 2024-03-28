@@ -26,23 +26,23 @@ typedef struct sVec4 {
 
 void Vec3Print(Vec3 vector);
 
-inline Vec3 Vec3Add(Vec3 left, Vec3 right);
+Vec3 Vec3Add(Vec3 left, Vec3 right);
 
-inline Vec3 Vec3Sub(Vec3 left, Vec3 right);
+Vec3 Vec3Sub(Vec3 left, Vec3 right);
 
-inline float Vec3Dot(Vec3 left, Vec3 right);
+float Vec3Dot(Vec3 left, Vec3 right);
 
-inline Vec3 Vec3Normalize(Vec3 vector);
+Vec3 Vec3Normalize(Vec3 vector);
 
-inline Vec3 Vec3Cross(Vec3 left, Vec3 right);
+Vec3 Vec3Cross(Vec3 left, Vec3 right);
 
-inline Vec3 Vec3Negate(Vec3 vector);
+Vec3 Vec3Negate(Vec3 vector);
 
-inline Vec3 Vec3Scale(Vec3 vector, float scalar);
+Vec3 Vec3Scale(Vec3 vector, float scalar);
 
-inline Vec3 Vec3Mul(Vec3 left, Vec3 right);
+Vec3 Vec3Mul(Vec3 left, Vec3 right);
 
-inline float Vec3Magnitude(Vec3 vector);
+float Vec3Magnitude(Vec3 vector);
 
 #ifdef __cplusplus
 }
