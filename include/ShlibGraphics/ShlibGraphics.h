@@ -11,5 +11,6 @@
 #include "Texture.h"
 #include "Framebuffer.h"
 #include "ShaderStorage.h"
+#include "UniformBuffer.h"
 
 #endif //SHLIBGRAPHICS_H
