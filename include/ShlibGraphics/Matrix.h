@@ -23,31 +23,31 @@ typedef struct sMatrix {
 
 void MatrixPrint(Matrix matrix);
 
-Matrix MatrixIdentity(void);
+inline Matrix MatrixIdentity(void);
 
-Matrix MatrixMul(Matrix left, Matrix right);
+inline Matrix MatrixMul(Matrix left, Matrix right);
 
-Vec3 MatrixMulVec3(Matrix left, Vec3 right);
+inline Vec3 MatrixMulVec3(Matrix left, Vec3 right);
 
-Vec4 MatrixMulVec4(Matrix left, Vec4 right);
+inline Vec4 MatrixMulVec4(Matrix left, Vec4 right);
 
-Matrix MatrixCreateScale(Vec3 scale);
+inline Matrix MatrixCreateScale(Vec3 scale);
 
-Matrix MatrixCreateUScale(float scale);
+inline Matrix MatrixCreateUScale(float scale);
 
-Matrix MatrixCreateTranslation(Vec3 translation);
+inline Matrix MatrixCreateTranslation(Vec3 translation);
 
-Matrix MatrixScale(Matrix matrix, Vec3 scale);
+inline Matrix MatrixScale(Matrix matrix, Vec3 scale);
 
-Matrix MatrixUScale(Matrix matrix, float scale);
+inline Matrix MatrixUScale(Matrix matrix, float scale);
 
-Matrix MatrixTranslate(Matrix matrix, Vec3 translation);
+inline Matrix MatrixTranslate(Matrix matrix, Vec3 translation);
 
-Matrix MatrixOrtho(float left, float right, float top, float bottom, float near, float far);
+inline Matrix MatrixOrtho(float left, float right, float top, float bottom, float near, float far);
 
-Matrix MatrixPerspective(float aspect, float fov, float near, float far);
+inline Matrix MatrixPerspective(float aspect, float fov, float near, float far);
 
-Matrix MatrixLookAt(Vec3 eye, Vec3 target, Vec3 up);
+inline Matrix MatrixLookAt(Vec3 eye, Vec3 target, Vec3 up);
 
 #ifdef __cplusplus
 }
