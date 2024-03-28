@@ -33,6 +33,8 @@ void FileFree(void *contents);
 
 bool CheckGLErrors();
 
+double GetTime();
+
 #ifdef __cplusplus
 }
 #endif

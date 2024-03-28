@@ -1,4 +1,5 @@
 #include "ShlibGraphics/Utils.h"
+#include "GLFW/glfw3.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -91,4 +92,9 @@ bool CheckGLErrors()
     }
 
     return result;
+}
+
+double GetTime()
+{
+    return glfwGetTime();
 }
