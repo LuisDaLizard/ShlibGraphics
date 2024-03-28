@@ -23,7 +23,8 @@ set(SOURCES
         src/Texture.c
         src/Framebuffer.c
         src/Graphics.c
-        src/ShaderStorage.c)
+        src/ShaderStorage.c
+        src/UniformBuffer.c)
 
 set(INCLUDES
         include
