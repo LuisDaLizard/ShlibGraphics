@@ -25,6 +25,7 @@ bool MeshCreate(MeshCreateInfo *pCreateInfo, Mesh *pMesh)
 
     Mesh mesh = malloc(sizeof(struct sMesh));
     mesh->topology = pCreateInfo->topology;
+    mesh->patchSize = pCreateInfo->patchSize;
     mesh->numVertices = pCreateInfo->numVertices;
 
     glGenVertexArrays(1, &mesh->vao);
@@ -63,7 +64,7 @@ void MeshDraw(Mesh mesh)
     glBindVertexArray(mesh->vao);
 
     if (mesh->topology == GL_PATCHES)
-        glPatchParameteri(GL_PATCH_VERTICES, mesh->numVertices);
+        glPatchParameteri(GL_PATCH_VERTICES, mesh->patchSize);
 
     glDrawArrays(mesh->topology, 0, mesh->numVertices);
 

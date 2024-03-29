@@ -16,6 +16,7 @@ typedef enum eMeshTopology
 
 struct sMeshCreateInfo {
     int stride;
+    int patchSize;
     int numVertices;
     float *pVertexData;
     int numAttributes;
@@ -27,6 +28,7 @@ struct sMesh {
     unsigned int vao;
     unsigned int vbo;
     int numVertices;
+    int patchSize;
     MeshTopology topology;
 };
 
